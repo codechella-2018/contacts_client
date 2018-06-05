@@ -10,6 +10,14 @@
   </head>
 
   <body>
+
+    <a href="/client/contacts">Home</a>
+    <a href="/client/contacts/new">New Contact</a>
+
+    <% flash.each do |name, message| %>
+      <p><%= message %></p>
+    <% end %>
+    
     <%= yield %>
   </body>
 </html>
