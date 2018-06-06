@@ -14,7 +14,9 @@ class Client::ContactsController < ApplicationController
       first_name: params[:first_name],
       last_name: params[:last_name],
       email: params[:email],
-      phone_number: params[:phone_number]
+      phone_number: params[:phone_number],
+      bio: params[:bio],
+      middle_name: params[:middle_name]
     }
 
     response = Unirest.post(
@@ -44,7 +46,9 @@ class Client::ContactsController < ApplicationController
       first_name: params[:first_name],
       last_name: params[:last_name],
       email: params[:email],
-      phone_number: params[:phone_number]
+      phone_number: params[:phone_number],
+      bio: params[:bio],
+      middle_name: params[:middle_name]
     }
 
     response = Unirest.patch(
