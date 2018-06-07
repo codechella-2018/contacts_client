@@ -15,7 +15,7 @@
     Phone Number: <input type="text" name="phone_number" value="<%= @contact["phone_number"] %>" />
   </div>
   <div>
-    Bio: <textarea name="bio" id="bio" cols="30" rows="10" value="<%= @contact['bio'] %>"></textarea>
+    Bio: <textarea name="bio" id="bio" cols="30" rows="10"><%= @contact['bio'] %></textarea>
   </div>
   <input type="submit" name="" value="Update Contact"/>
 <% end %>
