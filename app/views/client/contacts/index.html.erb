@@ -1,3 +1,10 @@
+<div>
+	<%= form_tag "/client/contacts", method: :get do %>
+		<input type="text" name="search">
+		<input type="submit" value="Search">
+	<% end %>
+</div>
+
 <% @contacts.each do |contact| %>
   <h4>First Name: <a href="/client/contacts/<%= contact['id'] %>"><%= contact["first_name"] %></a></h4>
   <h4>Middle Name: <%= contact["middle_name"] %></h4>
