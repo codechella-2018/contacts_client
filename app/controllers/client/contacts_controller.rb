@@ -1,7 +1,8 @@
 class Client::ContactsController < ApplicationController
   def index
     client_params = {
-      search: params[:search]
+      search: params[:search],
+      group: params[:group]
     }
     response = Unirest.get("http://localhost:3000/api/contacts", parameters: client_params)
     @contacts = response.body

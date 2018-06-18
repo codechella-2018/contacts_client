@@ -4,6 +4,11 @@
 		<input type="submit" value="Search">
 	<% end %>
 </div>
+<ul>
+  <li><a href="/client/contacts?group=friends">Friends</a></li>
+  <li><a href="/client/contacts?group=family">Family</a></li>
+  <li><a href="/client/contacts?group=business">Business</a></li>
+</ul>
 
 <% @contacts.each do |contact| %>
   <h4>First Name: <a href="/client/contacts/<%= contact['id'] %>"><%= contact["first_name"] %></a></h4>
