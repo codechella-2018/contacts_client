@@ -1,3 +1,11 @@
+<% if @errors %>
+  <ul>
+    <% @errors.each do |error| %>
+      <li><%= error %></li>
+    <% end  %>
+  </ul>
+<% end %>
+
 <%= form_tag "/client/contacts/#{@contact["id"]}", method: :patch do %>
   <div>
     First Name: <input type="text" name="first_name" value="<%= @contact["first_name"] %>" />

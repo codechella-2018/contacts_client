@@ -10,26 +10,39 @@ class Client::ContactsController < ApplicationController
   end
 
   def new
+    @contact = {
+      "first_name" => params[:first_name],
+      "last_name" => params[:last_name],
+      "email" => params[:email],
+      "phone_number" => params[:phone_number],
+      "bio" => params[:bio],
+      "middle_name" => params[:middle_name]
+    }
     render 'new.html.erb'
   end
 
   def create
-    client_params = {
-      first_name: params[:first_name],
-      last_name: params[:last_name],
-      email: params[:email],
-      phone_number: params[:phone_number],
-      bio: params[:bio],
-      middle_name: params[:middle_name]
+    @contact = {
+      "first_name" => params[:first_name],
+      "last_name" => params[:last_name],
+      "email" => params[:email],
+      "phone_number" => params[:phone_number],
+      "bio" => params[:bio],
+      "middle_name" => params[:middle_name]
     }
 
     response = Unirest.post(
 	    "http://localhost:3000/api/contacts",
-	    parameters: client_params
-	    )
+	    parameters: @contact
+	   )
 
-    flash[:success] = "Successfully created contact"
-    redirect_to "/client/contacts/"
+    if response.code == 200
+      flash[:success] = "Successfully created contact"
+      redirect_to "/client/contacts/"
+    else
+      @errors = response.body['errors']
+      render 'new.html.erb'
+    end
   end
 
   def show
@@ -46,22 +59,28 @@ class Client::ContactsController < ApplicationController
   end
 
   def update
-    client_params = {
-      first_name: params[:first_name],
-      last_name: params[:last_name],
-      email: params[:email],
-      phone_number: params[:phone_number],
-      bio: params[:bio],
-      middle_name: params[:middle_name]
+    @contact = {
+      "id" => params[:id],
+      "first_name" => params[:first_name],
+      "last_name" => params[:last_name],
+      "email" => params[:email],
+      "phone_number" => params[:phone_number],
+      "bio" => params[:bio],
+      "middle_name" => params[:middle_name]
     }
 
     response = Unirest.patch(
       "http://localhost:3000/api/contacts/#{params[:id]}",
-      parameters: client_params
+      parameters: @contact
       )
 
-    flash[:success] = "Successfully updated contact"
-    redirect_to "/client/contacts/#{params[:id]}"
+    if response.code == 200
+      flash[:success] = "Successfully updated contact"
+      redirect_to "/client/contacts/#{params[:id]}"
+    else 
+      @errors = response.body['errors']
+      render 'edit.html.erb'
+    end
   end
 
   def destroy

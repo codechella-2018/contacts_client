@@ -1,21 +1,31 @@
+<% if @errors %>
+  <ul>
+    <% @errors.each do |error| %>
+      <li><%= error %></li>
+    <% end  %>
+  </ul>
+<% end %>
+
 <%= form_tag "/client/contacts", method: :post do %>
   <div>
-    First Name: <input type="text" name="first_name" />
+    First Name: <input type="text" name="first_name" value="<%= @contact['first_name'] %>" />
   </div>
   <div>
-    Middle Name: <input type="text" name="middle_name" />
+    Middle Name: <input type="text" name="middle_name" value="<%= @contact['middle_name'] %>"/>
   </div>
   <div>
-    Last Name: <input type="text" name="last_name" />
+    Last Name: <input type="text" name="last_name" value="<%= @contact['last_name'] %>"/>
   </div>
   <div>
-    Email: <input type="text" name="email" />
+    Email: <input type="text" name="email" value="<%= @contact['email'] %>"/>
   </div>
   <div>
-    Phone Number: <input type="text" name="phone_number" />
+    Phone Number: <input type="text" name="phone_number" value="<%= @contact['phone_number'] %>"/>
   </div>
   <div>  
-    Bio: <textarea name="bio" id="bio" cols="30" rows="10"></textarea>
+    Bio: <textarea name="bio" id="bio" cols="30" rows="10">
+      <%= @contact['bio'] %>
+    </textarea>
   </div>
   <input type="submit" name="" value="Create Contact" />
 <% end %>
